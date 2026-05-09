@@ -1,19 +1,34 @@
-<<<<<<< HEAD
-## Approach
+# PhonePe Transaction Insights
 
-1. **Data Extraction** — Cloned PhonePe pulse repository and parsed nested JSON files into structured Pandas dataframes
-2. **EDA** — 15 charts covering univariate, bivariate and multivariate analysis following the UBM rule
-3. **Hypothesis Testing** — Pearson correlation, One-way ANOVA and Independent T-test
-4. **Feature Engineering** — Label encoding, outlier capping, power transformation, standard scaling and new feature creation
-5. **ML Models** — Regression models to predict transaction amounts with hyperparameter tuning
+Analysis of PhonePe's publicly available pulse data to uncover transaction trends, user engagement patterns, and geographic insights across India.
 
-## Key Insights
+## Project Type
+Exploratory Data Analysis + Regression
 
-- Merchant payments and peer to peer payments dominate transaction value on PhonePe
-- Telangana, Maharashtra and Karnataka are the top states by transaction amount
-- Registered users and transaction amounts have a Pearson correlation of 0.90 confirming user acquisition drives revenue
-- Transaction amounts in 2023 are significantly higher than 2019 confirmed via T-test
-- Q3 and Q4 show higher transaction volumes driven by festive season spending
+## Domain
+Finance / Digital Payments
+
+---
+
+## Problem Statement
+
+With the increasing reliance on digital payment systems like PhonePe, understanding transaction dynamics, user engagement, and geographic distribution is critical for improving services and targeting users effectively. This project analyzes aggregated transaction and user data across all Indian states from 2018 to 2024.
+
+---
+
+## Dataset
+
+Source: [PhonePe Pulse GitHub Repository](https://github.com/PhonePe/pulse)
+
+Three main datasets were extracted from the JSON files:
+
+| Dataset | Description | Shape |
+|---|---|---|
+| df_agg_trans | Aggregated transactions by state, year, quarter and payment type | (5034, 6) |
+| df_agg_user | Registered users and app opens by state and year | (1008, 5) |
+| df_map_trans | District level transaction counts and amounts | (20604, 6) |
+
+---
 
 ## Tech Stack
 
@@ -21,47 +36,79 @@
 - Pandas, NumPy
 - Matplotlib, Seaborn
 - Scikit-learn
-- Scipy
+- SciPy
 - Jupyter Notebook
+
+---
+
+## Project Structure
+
+```
+phonepe/
+├── pulse/                  # PhonePe raw JSON data (cloned from PhonePe/pulse)
+├── Sample_ML_Submission_Template-2.ipynb   # Main analysis notebook
+└── README.md
+```
+
+---
+
+## Key Findings
+
+- Merchant payments and peer to peer payments account for the majority of transaction value on PhonePe
+- Telangana, Maharashtra and Karnataka are the top three states by transaction amount
+- Registered users and transaction amounts have a Pearson correlation of 0.90 confirming user acquisition directly drives revenue
+- Transaction amounts in 2023 are significantly higher than 2019 confirmed via independent T-test (p < 0.05)
+- Q3 and Q4 see higher transaction volumes driven by festive season spending
+- App opens are growing faster than registrations in recent years indicating improving user engagement
+
+---
+
+## Hypothesis Testing
+
+| Hypothesis | Test Used | Result |
+|---|---|---|
+| Registered users correlate with transaction amount | Pearson Correlation | r = 0.90, p = 0.0000, Rejected H0 |
+| Transaction amounts differ across payment types | One-way ANOVA | F = 206.37, p = 0.0000, Rejected H0 |
+| Transaction amounts grew from 2019 to 2023 | Independent T-test | t = 8.77, p = 0.0000, Rejected H0 |
+
+---
+
+## ML Models Used
+
+- Random Forest Regressor
+- Linear Regression
+- Gradient Boosting Regressor
+
+---
 
 ## How to Run
 
-1. Clone this repository
-2. Clone PhonePe pulse data into the same folder
+1. Clone the PhonePe pulse data:
 ```bash
 git clone https://github.com/PhonePe/pulse.git
 ```
-3. Open Jupyter Notebook
+
+2. Clone this repository:
+```bash
+git clone https://github.com/sarthak-codes11/-phonepe-transaction-insights.git
+```
+
+3. Place both folders in the same directory so the structure looks like:
+```
+phonepe/
+├── pulse/
+└── Sample_ML_Submission_Template-2.ipynb
+```
+
+4. Open Jupyter Notebook from that directory:
 ```bash
 jupyter notebook
 ```
-4. Run all cells top to bottom using Kernel → Restart & Run All
 
-## Business Use Cases Addressed
+5. Run all cells top to bottom using Kernel → Restart & Run All
 
-- Customer segmentation by state and transaction type
-- Geographical insights for targeted marketing
-- Payment performance evaluation across categories
-- User engagement trend analysis
-- Trend analysis for demand forecasting
+---
 
 ## Author
-Sarthak Deore
-=======
-# PhonePe Transaction Insights
 
-An end-to-end data analysis project on PhonePe's publicly available transaction data. The project covers data extraction, exploratory data analysis, hypothesis testing, feature engineering and machine learning models to derive business insights from digital payment trends across India.
-
-## Project Type
-Regression / EDA
-
-## Domain
-Finance / Payment Systems
-
-## Dataset
-[PhonePe Pulse GitHub Repository](https://github.com/PhonePe/pulse)
-
-The dataset contains transaction and user data across all Indian states spanning 2018 to 2024, stored as structured JSON files organized by state, year and quarter.
-
-## Project Structure
->>>>>>> e39031468edd4aba5e81af4646c6fbd3029fc66c
+Sarthak
